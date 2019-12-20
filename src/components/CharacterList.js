@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import React from "react";
 import CharacterCard from './CharacterCard';
 
-export default function CharacterList() {
-  const [characterList, setCharacterList] = useState([]);
+export default function CharacterList(props) {
+  
 
-  useEffect(() => {
-    axios.get('https://rickandmortyapi.com/api/character/')
-      .then(response => {
-        setCharacterList(response.data.results);
-      })
-      .catch(error => {
-        console.log('The requested data was not returned', error);
-      })
-  }, []);
+  
 
   return (
     <section className="character-list">
-      {characterList.map(element => {
+      {props.characterList.map(element => {
         return(
           <CharacterCard 
             key={element.id}
