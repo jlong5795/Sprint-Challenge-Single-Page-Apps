@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CharacterCard from './CharacterCard';
 
-
 export default function SearchForm(props) {
   const [searchTerms, setSearchTerms] = useState('');
   const [result, setResults] = useState([]);
