@@ -2,10 +2,6 @@ import React from "react";
 import CharacterCard from './CharacterCard';
 
 export default function CharacterList(props) {
-  
-
-  
-
   return (
     <section className="character-list">
       {props.characterList.map(element => {

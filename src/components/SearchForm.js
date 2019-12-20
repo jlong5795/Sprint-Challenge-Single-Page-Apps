@@ -6,14 +6,18 @@ export default function SearchForm(props) {
   const [searchTerms, setSearchTerms] = useState('');
   const [result, setResults] = useState([]);
     
-  const results = props.characterList.filter(character => {
-    character.toLowerCase().includes(searchTerms.toLowerCase()); 
-    setResults(results);
-    });
- 
-  
+  useEffect(() => {
+    const results = props.characterList.filter(character => 
+      character.name.toLowerCase().includes(searchTerms.toLowerCase())
+    );
+      console.log(results);
+      setResults(results);
+  },[searchTerms]);
+
   const changeHandler = e => {
     setSearchTerms(e.target.value);
+  };
+
   return (
     <section className="search-form">
       <h1>Rick and Morty Character Search</h1>
@@ -21,8 +25,7 @@ export default function SearchForm(props) {
       <input type='text' value={searchTerms} placeholder='Search' onChange={changeHandler} />
       </form>
       <div>
-      {results.map(element => {
-        return(
+      {result.map(element => 
           <CharacterCard 
             key={element.id}
             name={element.name}
@@ -30,10 +33,8 @@ export default function SearchForm(props) {
             species={element.species}
             gender={element.gender}
             imgURL={element.image}/>
-        )
-      })}
-     </div>
+        )}
+    </div>
     </section>
   );
-  }
 }
